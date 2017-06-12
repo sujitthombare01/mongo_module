@@ -1,0 +1,19 @@
+{
+  "name": "mongo_module",
+  "version": "1.0.0",
+  "description": "mongodb lib",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "author": "Sujit",
+  "license": "ISC",
+  "dependencies": {
+    "fs": "0.0.1-security",
+    "grunt-node-inspector": "^1.0.0",
+    "jsonfile": "^3.0.0",
+    "mongodb": "^2.2.28",
+    "properties-reader": "0.0.15"
+  }
+}
