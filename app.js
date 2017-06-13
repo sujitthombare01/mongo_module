@@ -1,5 +1,4 @@
-var prop_reader = require('./db_module/json_reader');
+var prop_reader = require('./db_module/mongo_module');
 
 
 
-console.log("Hello Word");

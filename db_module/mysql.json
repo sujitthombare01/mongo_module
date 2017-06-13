@@ -1,0 +1,4 @@
+{
+  "tableonemysql": "mongo_module",
+ "tabletwomysql": "mongo_module two"
+}
