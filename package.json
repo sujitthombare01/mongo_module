@@ -12,6 +12,7 @@
   "dependencies": {
     "jsonfile": "^3.0.0",
     "mongodb": "^2.2.28",
+    "mysql": "^2.13.0",
     "properties-reader": "0.0.15"
   }
 }
