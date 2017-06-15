@@ -24,29 +24,64 @@ var connection = function  getConnection(dbNumber)
 
 };
 
-var executeSQL = function(sqlString , connectionID)
+var executeSQL = function(sqlString ,param,callback, connectionID)
 {
 
 if(connectionID===undefined)
   connectionID=0;
 
 var db =connection();
-var msg= db.query(sqlString);
+var sql =db.format(sqlString,param);
+console.log('SQL :: '+sql);
+db.beginTransaction(function(err)
+  {
+     if (err) {  callback(err); }
+
+            db.query(sql,function(err,results,fields)
+                        {
+                                if(err){ 
+                                    db.rollback(function(){  console.log('Rollback sucess !!!'); callback(err); });
+
+                                    console.log('Error Found !!!');
+                                  }                               
+                                else
+                                   {
+                                     console.log('Success !!!');
+                                     callback(null,results);
+                                    }
+                                  
+                                  
+                            db.destroy();
+                            console.log('Connection closed..!');
+                        } );
+  });
 
 
-db.end();
 
+
+};
+
+
+var executeSQLbyID =function(sqlID ,callback, connectionID)
+{
 
 }
 
 
 
-//executeSQL('create table t1 (t1col char(20))');
-executeSQL('drop table t1');
+executeSQL('create table t11 (?? char(20))',['tempcol'],function(err,results){
+  if(err)
+  console.log(err.code);
+  else
+    console.log(results);
+});
+//executeSQL('drop table t1');
 
 
 module.exports ={
 
-connection // connection object
+connection ,// connection object
+executeSQL , // execute single sql
+executeSQLbyID // execute sql by using id
 
 };
